@@ -10,7 +10,6 @@ public class TemperatureSensor extends Observable {
     private TemperatureSensorImp itsImp;
     private double itsLastReading = Double.NaN;
     private void check() {
-        System.out.println("In check");
         double newReadTemp = read();
         if (newReadTemp != itsLastReading)
         {

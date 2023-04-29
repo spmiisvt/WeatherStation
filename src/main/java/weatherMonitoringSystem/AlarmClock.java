@@ -9,10 +9,19 @@ import java.util.Hashtable;
 public class AlarmClock {
     private AlarmClockImp itsAlarmClockImp;
     private Hashtable<AlarmClockListener, Long> itsListener;
+    private long countTick = 0;
+    private long maxTime = Long.MIN_VALUE;
 
-    private void wake() {
+    private void clock() {
         for (AlarmClockListener al : itsListener.keySet()) {
-            al.wakeUp();
+            long val = itsListener.get(al);
+            System.out.println(countTick);
+            if (countTick % val == 0) {
+                al.wakeUp();
+                if (val == maxTime) {
+                    countTick = 0;
+                }
+            }
         }
     }
     public AlarmClock(StationToolkit st)
@@ -21,7 +30,8 @@ public class AlarmClock {
         ClockListener cl = new ClockListener() {
             @Override
             public void tic() {
-                wake();
+                countTick += 10;
+                clock();
             }
         };
         itsAlarmClockImp.register(cl);
@@ -29,5 +39,6 @@ public class AlarmClock {
     }
     public void wakeEvery(long interval, AlarmClockListener al) {
         itsListener.put(al, interval);
+        maxTime = Math.max(interval, maxTime);
     }
 }
