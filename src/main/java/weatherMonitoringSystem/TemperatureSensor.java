@@ -1,4 +1,7 @@
-package com.wapp;
+package weatherMonitoringSystem;
+import api.StationToolkit;
+import api.TemperatureSensorImp;
+
 import java.util.Observable;
 import java.lang.Double;
 
@@ -19,7 +22,7 @@ public class TemperatureSensor extends Observable {
    public TemperatureSensor(AlarmClock ac, StationToolkit st) {
         itsImp = st.makeTemperature();
 
-        AlarmListener observer = new AlarmListener() {
+        AlarmClockListener observer = new AlarmClockListener() {
             public void wakeUp() {
                 check();
             }

@@ -1,4 +1,6 @@
-package com.wapp;
+package test;
+
+import api.ClockListener;
 
 public class Timer extends Thread {
     private ClockListener listener;

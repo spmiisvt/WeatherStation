@@ -1,13 +1,17 @@
-package com.wapp;
+package weatherMonitoringSystem;
+
+import api.AlarmClockImp;
+import api.ClockListener;
+import api.StationToolkit;
 
 import java.util.Hashtable;
 
 public class AlarmClock {
     private AlarmClockImp itsAlarmClockImp;
-    private Hashtable<AlarmListener, Long> itsListener;
+    private Hashtable<AlarmClockListener, Long> itsListener;
 
     private void wake() {
-        for (AlarmListener al : itsListener.keySet()) {
+        for (AlarmClockListener al : itsListener.keySet()) {
             al.wakeUp();
         }
     }
@@ -23,7 +27,7 @@ public class AlarmClock {
         itsAlarmClockImp.register(cl);
         itsListener = new Hashtable<>();
     }
-    public void wakeEvery(long interval, AlarmListener al) {
+    public void wakeEvery(long interval, AlarmClockListener al) {
         itsListener.put(al, interval);
     }
 }
