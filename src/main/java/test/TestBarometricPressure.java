@@ -8,6 +8,6 @@ public class TestBarometricPressure implements BarometricPressureSensorImp {
     private static final Random random = new Random();
     @Override
     public double read() {
-        return random.nextDouble();
+        return Math.round(random.nextDouble((50-47) + 1) + 47);
     }
 }

@@ -15,7 +15,6 @@ public class AlarmClock {
     private void clock() {
         for (AlarmClockListener al : itsListener.keySet()) {
             long val = itsListener.get(al);
-            System.out.println(countTick);
             if (countTick % val == 0) {
                 al.wakeUp();
                 if (val == maxTime) {
@@ -40,5 +39,8 @@ public class AlarmClock {
     public void wakeEvery(long interval, AlarmClockListener al) {
         itsListener.put(al, interval);
         maxTime = Math.max(interval, maxTime);
+    }
+    public void wakeEveryDay(AlarmClockListener al)
+    {
     }
 }

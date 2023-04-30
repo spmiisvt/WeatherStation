@@ -9,6 +9,6 @@ public class TestTemperature implements TemperatureSensorImp {
 
     @Override
     public double read() {
-        return random.nextDouble();
+        return Math.round(random.nextDouble((20-17) + 1) + 17);
     }
 }
